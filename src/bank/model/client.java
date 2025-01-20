@@ -6,7 +6,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Cliente implements Serializable {
+public class client implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String cpf;
@@ -14,11 +14,11 @@ public class Cliente implements Serializable {
 
 	private ArrayList<Conta> contas;
 
-	public Cliente() {
+	public client() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(String cpf, String nome) {
+	public client(String cpf, String nome) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.contas = new ArrayList<>();
@@ -74,7 +74,7 @@ public class Cliente implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		client other = (client) obj;
 		return Objects.equals(cpf, other.cpf);
 	}
 

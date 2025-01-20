@@ -6,14 +6,14 @@ import java.time.Month;
 import java.util.List;
 import java.util.Scanner;
 
-import bank.model.Cliente;
+import bank.model.client;
 import bank.model.Conta;
 import persistencia.PersistenciaArquivo;
 
 public class App {
 
 	private static Scanner scanner = new Scanner(System.in);
-	private static Cliente cliente = null;
+	private static client cliente = null;
 
 	public static void main(String[] args) {
 
@@ -67,7 +67,7 @@ public class App {
 		String nome = scanner.nextLine();
 		System.out.print("Digite o CPF do cliente: ");
 		String cpf = scanner.nextLine();
-		cliente = new Cliente(cpf, nome);
+		cliente = new client(cpf, nome);
 		System.out.println("Cliente cadastrado com sucesso!");
 		PersistenciaArquivo.getInstance().cadastrarCliente(cliente);
 	}
@@ -237,7 +237,7 @@ public class App {
 	private static void realizarTransferenciaEntreClientes() {
 		System.out.print("Digite o CPF do cliente de origem: ");
 		String cpfOrigem = scanner.next();
-		Cliente clienteOrigem = PersistenciaArquivo.getInstance().buscarClienteCpf(cpfOrigem);
+		client clienteOrigem = PersistenciaArquivo.getInstance().buscarClienteCpf(cpfOrigem);
 
 		if (clienteOrigem == null) {
 			System.err.println("Cliente de origem não encontrado.");
@@ -258,7 +258,7 @@ public class App {
 
 		System.out.print("Digite o CPF do cliente de destino: ");
 		String cpfDestino = scanner.next();
-		Cliente clienteDestino = PersistenciaArquivo.getInstance().buscarClienteCpf(cpfDestino);
+		client clienteDestino = PersistenciaArquivo.getInstance().buscarClienteCpf(cpfDestino);
 
 		if (clienteDestino == null) {
 			System.err.println("Cliente de destino não encontrado.");
@@ -350,14 +350,14 @@ public class App {
 	}
 
 	private static void listarClientes() {
-		List<Cliente> clientes = PersistenciaArquivo.getInstance().listarClientes();
+		List<client> clientes = PersistenciaArquivo.getInstance().listarClientes();
 		if (clientes.isEmpty()) {
 			System.out.println("Nenhum cliente cadastrado.");
 		} else {
 			System.out.println("==================================================");
 			System.out.println("                Lista de Clientes");
 			System.out.println("==================================================");
-			for (Cliente cli : clientes) {
+			for (client cli : clientes) {
 				System.out.println(cli);
 			}
 		}

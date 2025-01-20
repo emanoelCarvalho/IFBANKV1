@@ -12,7 +12,7 @@ public class client implements Serializable {
 	private String cpf;
 	private String nome;
 
-	private ArrayList<Conta> contas;
+	private ArrayList<account> contas;
 
 	public client() {
 		// TODO Auto-generated constructor stub
@@ -40,11 +40,11 @@ public class client implements Serializable {
 		this.nome = nome;
 	}
 
-	public ArrayList<Conta> getContas() {
+	public ArrayList<account> getContas() {
 		return contas;
 	}
 
-	public void setContas(ArrayList<Conta> contas) {
+	public void setContas(ArrayList<account> contas) {
 		this.contas = contas;
 	}
 
@@ -55,7 +55,7 @@ public class client implements Serializable {
 		sb.append("  CPF: ").append(cpf).append("\n");
 		sb.append("  Nome: ").append(nome).append("\n");
 		sb.append("  Contas:\n");
-		for (Conta conta : contas) {
+		for (account conta : contas) {
 			sb.append("    ").append(conta).append("\n");
 		}
 		return sb.toString();
@@ -78,7 +78,7 @@ public class client implements Serializable {
 		return Objects.equals(cpf, other.cpf);
 	}
 
-	public void adicionarConta(Conta c) {
+	public void adicionarConta(account c) {
 		if (contas.contains(c)) {
 			System.err.println("A conta já existe em nosso sistema.");
 		} else { 
@@ -87,7 +87,7 @@ public class client implements Serializable {
 		}
 	}
 
-	public void removerConta(Conta c) {
+	public void removerConta(account c) {
 
 		if (contas.contains(c)) {
 			this.contas.remove(c);
@@ -97,9 +97,9 @@ public class client implements Serializable {
 		}
 	}
 
-	public Conta localizarContaNumero(int numero) {
+	public account localizarContaNumero(int numero) {
 		for (int i = 0; i < contas.size(); i++) {
-			Conta c = contas.get(i);
+			account c = contas.get(i);
 
 			if (c.getNumero() == numero) {
 				System.out.println("Conta encontrada com sucesso!");
@@ -113,7 +113,7 @@ public class client implements Serializable {
 	public double balancoEntreContas() {
 		double ValorSaldo = 0.0;
 		for (int i = 0; i < contas.size(); i++) {
-			Conta c = contas.get(i);
+			account c = contas.get(i);
 			ValorSaldo += c.getSaldo().doubleValue();
 		}
 
@@ -123,7 +123,7 @@ public class client implements Serializable {
 
 	public void emitirExtrato(Month mes, int year) {
 		System.out.println("Extrado do mês " + mes.toString() + "/" + year);
-		for (Conta c : contas) {
+		for (account c : contas) {
 			System.out.println("Conta " + c.getNumero() + ":");
 			for (Transacao t : c.getTransacoes()) {
 				LocalDateTime dataTransacao = t.getData();

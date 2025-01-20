@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bank.model.client;
-import bank.model.Conta;
+import bank.model.account;
 
 public class PersistenciaArquivo implements Serializable {
 

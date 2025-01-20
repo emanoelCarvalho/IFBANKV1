@@ -11,7 +11,7 @@ import java.util.Random;
 
 import bank.model.enumerator.TipoTransacao;
 
-public class Conta implements Serializable {
+public class account implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer numero;
@@ -20,7 +20,7 @@ public class Conta implements Serializable {
 	private boolean status;
 	private List<Transacao> transacoes;
 
-	public Conta() {
+	public account() {
 		this.numero = new Random().nextInt(999999999);
 		this.saldo = BigDecimal.ZERO;
 		saldo.setScale(4, RoundingMode.HALF_UP);
@@ -82,7 +82,7 @@ public class Conta implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Conta other = (Conta) obj;
+		account other = (account) obj;
 		return Objects.equals(numero, other.numero);
 	}
 
@@ -137,7 +137,7 @@ public class Conta implements Serializable {
 		}
 	}
 
-	public void transferir(Conta c, BigDecimal quantia) {
+	public void transferir(account c, BigDecimal quantia) {
 		if (status && c.isStatus()) {
 			if (quantia.compareTo(BigDecimal.ZERO) < 0) {
 				System.err.println("Valor inválido para transferencia.");

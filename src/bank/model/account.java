@@ -18,7 +18,7 @@ public class account implements Serializable {
 	private BigDecimal saldo;
 	private LocalDateTime dataAbertura;
 	private boolean status;
-	private List<Transacao> transacoes;
+	private List<transaction> transacoes;
 
 	public account() {
 		this.numero = new Random().nextInt(999999999);
@@ -61,11 +61,11 @@ public class account implements Serializable {
 		this.status = status;
 	}
 
-	public List<Transacao> getTransacoes() {
+	public List<transaction> getTransacoes() {
 		return transacoes;
 	}
 
-	public void setTransacoes(List<Transacao> transacoes) {
+	public void setTransacoes(List<transaction> transacoes) {
 		this.transacoes = transacoes;
 	}
 
@@ -95,7 +95,7 @@ public class account implements Serializable {
 		sb.append("  Data de Abertura: ").append(dataAbertura).append("\n");
 		sb.append("  Status: ").append(status).append("\n");
 		sb.append("  Transações:\n");
-		for (Transacao transacao : transacoes) {
+		for (transaction transacao : transacoes) {
 			sb.append("    ").append(transacao).append("\n");
 		}
 		return sb.toString();
@@ -106,7 +106,7 @@ public class account implements Serializable {
 		if (status) {
 			if (quantia.compareTo(BigDecimal.ZERO) > 0) {
 				this.saldo = this.saldo.add(quantia);
-				transacoes.add(new Transacao(quantia, TipoTransacao.CREDITO, LocalDateTime.now()));
+				transacoes.add(new transaction(quantia, TipoTransacao.CREDITO, LocalDateTime.now()));
 
 				System.out.println("Depósito realizado com sucesso!");
 			} else {
@@ -124,7 +124,7 @@ public class account implements Serializable {
 			if (quantia.compareTo(BigDecimal.ZERO) > 0) {
 				if (this.saldo.compareTo(quantia) > 0) {
 					this.saldo = this.saldo.subtract(quantia);
-					transacoes.add(new Transacao(quantia, TipoTransacao.DEBITO, LocalDateTime.now()));
+					transacoes.add(new transaction(quantia, TipoTransacao.DEBITO, LocalDateTime.now()));
 					System.out.println("Saque realizado com sucesso!");
 				} else {
 					System.err.println("Saldo insuficiente para a operação.");
@@ -144,8 +144,8 @@ public class account implements Serializable {
 			} else if (quantia.compareTo(saldo) > 0) {
 				setSaldo(saldo.subtract(quantia));
 				c.setSaldo(c.getSaldo().add(quantia));
-				c.transacoes.add(new Transacao(quantia, TipoTransacao.TRANSACAO_CREDITO, LocalDateTime.now()));
-				transacoes.add(new Transacao(quantia, TipoTransacao.TRANSACAO_DEBITO, LocalDateTime.now()));
+				c.transacoes.add(new transaction(quantia, TipoTransacao.TRANSACAO_CREDITO, LocalDateTime.now()));
+				transacoes.add(new transaction(quantia, TipoTransacao.TRANSACAO_DEBITO, LocalDateTime.now()));
 			} else
 				System.err.println("Saldo insuficiente para realizar a transferencia.");
 		} else {

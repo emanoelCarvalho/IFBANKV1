@@ -125,7 +125,7 @@ public class client implements Serializable {
 		System.out.println("Extrado do mês " + mes.toString() + "/" + year);
 		for (account c : contas) {
 			System.out.println("Conta " + c.getNumero() + ":");
-			for (Transacao t : c.getTransacoes()) {
+			for (transaction t : c.getTransacoes()) {
 				LocalDateTime dataTransacao = t.getData();
 				if (dataTransacao.getMonth() == mes && dataTransacao.getYear() == year) {
 					System.out.println(" " + t.toString());

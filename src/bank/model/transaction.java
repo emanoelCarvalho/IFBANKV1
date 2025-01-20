@@ -8,7 +8,7 @@ import java.util.Random;
 
 import bank.model.enumerator.TipoTransacao;
 
-public class Transacao implements Serializable {
+public class transaction implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
@@ -16,7 +16,7 @@ public class Transacao implements Serializable {
 	private TipoTransacao tipo;
 	private LocalDateTime data;
 
-	public Transacao(BigDecimal valor, TipoTransacao tipo, LocalDateTime data) {
+	public transaction(BigDecimal valor, TipoTransacao tipo, LocalDateTime data) {
 		this.id = new Random().nextInt(999999999);
 		this.valor = valor;
 		this.tipo = tipo;
@@ -68,7 +68,7 @@ public class Transacao implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Transacao other = (Transacao) obj;
+		transaction other = (transaction) obj;
 		return Objects.equals(data, other.data) && Objects.equals(id, other.id) && tipo == other.tipo
 				&& Objects.equals(valor, other.valor);
 	}

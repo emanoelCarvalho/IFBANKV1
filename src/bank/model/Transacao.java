@@ -1,4 +1,4 @@
-package banco.model;
+package bank.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 
-import banco.model.enumerator.TipoTransacao;
+import bank.model.enumerator.TipoTransacao;
 
 public class Transacao implements Serializable {
 

@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import banco.model.Cliente;
-import banco.model.Conta;
+import bank.model.Cliente;
+import bank.model.Conta;
 
 public class PersistenciaArquivo implements Serializable {
 

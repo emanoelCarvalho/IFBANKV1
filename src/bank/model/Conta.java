@@ -1,4 +1,4 @@
-package banco.model;
+package bank.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import banco.model.enumerator.TipoTransacao;
+import bank.model.enumerator.TipoTransacao;
 
 public class Conta implements Serializable {
 

@@ -1,4 +1,4 @@
-package banco.model.enumerator;
+package bank.model.enumerator;
 
 public enum TipoTransacao {
 

@@ -1,4 +1,4 @@
-package banco.model;
+package bank.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

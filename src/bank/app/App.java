@@ -1,4 +1,4 @@
-package banco.app;
+package bank.app;
 
 import java.math.BigDecimal;
 
@@ -6,8 +6,8 @@ import java.time.Month;
 import java.util.List;
 import java.util.Scanner;
 
-import banco.model.Cliente;
-import banco.model.Conta;
+import bank.model.Cliente;
+import bank.model.Conta;
 import persistencia.PersistenciaArquivo;
 
 public class App {

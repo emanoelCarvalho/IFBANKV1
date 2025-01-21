@@ -6,19 +6,19 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class client implements Serializable {
+public class Client implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String cpf;
 	private String nome;
 
-	private ArrayList<account> contas;
+	private ArrayList<Account> contas;
 
-	public client() {
+	public Client() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public client(String cpf, String nome) {
+	public Client(String cpf, String nome) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.contas = new ArrayList<>();
@@ -40,11 +40,11 @@ public class client implements Serializable {
 		this.nome = nome;
 	}
 
-	public ArrayList<account> getContas() {
+	public ArrayList<Account> getContas() {
 		return contas;
 	}
 
-	public void setContas(ArrayList<account> contas) {
+	public void setContas(ArrayList<Account> contas) {
 		this.contas = contas;
 	}
 
@@ -55,7 +55,7 @@ public class client implements Serializable {
 		sb.append("  CPF: ").append(cpf).append("\n");
 		sb.append("  Nome: ").append(nome).append("\n");
 		sb.append("  Contas:\n");
-		for (account conta : contas) {
+		for (Account conta : contas) {
 			sb.append("    ").append(conta).append("\n");
 		}
 		return sb.toString();
@@ -74,11 +74,11 @@ public class client implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		client other = (client) obj;
+		Client other = (Client) obj;
 		return Objects.equals(cpf, other.cpf);
 	}
 
-	public void adicionarConta(account c) {
+	public void adicionarConta(Account c) {
 		if (contas.contains(c)) {
 			System.err.println("A conta já existe em nosso sistema.");
 		} else { 
@@ -87,7 +87,7 @@ public class client implements Serializable {
 		}
 	}
 
-	public void removerConta(account c) {
+	public void removerConta(Account c) {
 
 		if (contas.contains(c)) {
 			this.contas.remove(c);
@@ -97,9 +97,9 @@ public class client implements Serializable {
 		}
 	}
 
-	public account localizarContaNumero(int numero) {
+	public Account localizarContaNumero(int numero) {
 		for (int i = 0; i < contas.size(); i++) {
-			account c = contas.get(i);
+			Account c = contas.get(i);
 
 			if (c.getNumero() == numero) {
 				System.out.println("Conta encontrada com sucesso!");
@@ -113,7 +113,7 @@ public class client implements Serializable {
 	public double balancoEntreContas() {
 		double ValorSaldo = 0.0;
 		for (int i = 0; i < contas.size(); i++) {
-			account c = contas.get(i);
+			Account c = contas.get(i);
 			ValorSaldo += c.getSaldo().doubleValue();
 		}
 
@@ -123,9 +123,9 @@ public class client implements Serializable {
 
 	public void emitirExtrato(Month mes, int year) {
 		System.out.println("Extrado do mês " + mes.toString() + "/" + year);
-		for (account c : contas) {
+		for (Account c : contas) {
 			System.out.println("Conta " + c.getNumero() + ":");
-			for (transaction t : c.getTransacoes()) {
+			for (Transaction t : c.getTransacoes()) {
 				LocalDateTime dataTransacao = t.getData();
 				if (dataTransacao.getMonth() == mes && dataTransacao.getYear() == year) {
 					System.out.println(" " + t.toString());

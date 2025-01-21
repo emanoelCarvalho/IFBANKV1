@@ -6,17 +6,17 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 
-import bank.model.enumerator.TipoTransacao;
+import bank.model.enumerator.TypeTransaction;
 
-public class transaction implements Serializable {
+public class Transaction implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private BigDecimal valor;
-	private TipoTransacao tipo;
+	private TypeTransaction tipo;
 	private LocalDateTime data;
 
-	public transaction(BigDecimal valor, TipoTransacao tipo, LocalDateTime data) {
+	public Transaction(BigDecimal valor, TypeTransaction tipo, LocalDateTime data) {
 		this.id = new Random().nextInt(999999999);
 		this.valor = valor;
 		this.tipo = tipo;
@@ -39,11 +39,11 @@ public class transaction implements Serializable {
 		this.valor = valor;
 	}
 
-	public TipoTransacao getTipo() {
+	public TypeTransaction getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoTransacao tipo) {
+	public void setTipo(TypeTransaction tipo) {
 		this.tipo = tipo;
 	}
 
@@ -68,7 +68,7 @@ public class transaction implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		transaction other = (transaction) obj;
+		Transaction other = (Transaction) obj;
 		return Objects.equals(data, other.data) && Objects.equals(id, other.id) && tipo == other.tipo
 				&& Objects.equals(valor, other.valor);
 	}

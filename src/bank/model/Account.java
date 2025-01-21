@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import bank.model.enumerator.TipoTransacao;
+import bank.model.enumerator.TypeTransaction;
 
-public class account implements Serializable {
+public class Account implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer numero;
 	private BigDecimal saldo;
 	private LocalDateTime dataAbertura;
 	private boolean status;
-	private List<transaction> transacoes;
+	private List<Transaction> transacoes;
 
-	public account() {
+	public Account() {
 		this.numero = new Random().nextInt(999999999);
 		this.saldo = BigDecimal.ZERO;
 		saldo.setScale(4, RoundingMode.HALF_UP);
@@ -61,11 +61,11 @@ public class account implements Serializable {
 		this.status = status;
 	}
 
-	public List<transaction> getTransacoes() {
+	public List<Transaction> getTransacoes() {
 		return transacoes;
 	}
 
-	public void setTransacoes(List<transaction> transacoes) {
+	public void setTransacoes(List<Transaction> transacoes) {
 		this.transacoes = transacoes;
 	}
 
@@ -82,7 +82,7 @@ public class account implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		account other = (account) obj;
+		Account other = (Account) obj;
 		return Objects.equals(numero, other.numero);
 	}
 
@@ -95,7 +95,7 @@ public class account implements Serializable {
 		sb.append("  Data de Abertura: ").append(dataAbertura).append("\n");
 		sb.append("  Status: ").append(status).append("\n");
 		sb.append("  Transações:\n");
-		for (transaction transacao : transacoes) {
+		for (Transaction transacao : transacoes) {
 			sb.append("    ").append(transacao).append("\n");
 		}
 		return sb.toString();
@@ -106,7 +106,7 @@ public class account implements Serializable {
 		if (status) {
 			if (quantia.compareTo(BigDecimal.ZERO) > 0) {
 				this.saldo = this.saldo.add(quantia);
-				transacoes.add(new transaction(quantia, TipoTransacao.CREDITO, LocalDateTime.now()));
+				transacoes.add(new Transaction(quantia, TypeTransaction.CREDITO, LocalDateTime.now()));
 
 				System.out.println("Depósito realizado com sucesso!");
 			} else {
@@ -124,7 +124,7 @@ public class account implements Serializable {
 			if (quantia.compareTo(BigDecimal.ZERO) > 0) {
 				if (this.saldo.compareTo(quantia) > 0) {
 					this.saldo = this.saldo.subtract(quantia);
-					transacoes.add(new transaction(quantia, TipoTransacao.DEBITO, LocalDateTime.now()));
+					transacoes.add(new Transaction(quantia, TypeTransaction.DEBITO, LocalDateTime.now()));
 					System.out.println("Saque realizado com sucesso!");
 				} else {
 					System.err.println("Saldo insuficiente para a operação.");
@@ -137,15 +137,15 @@ public class account implements Serializable {
 		}
 	}
 
-	public void transferir(account c, BigDecimal quantia) {
+	public void transferir(Account c, BigDecimal quantia) {
 		if (status && c.isStatus()) {
 			if (quantia.compareTo(BigDecimal.ZERO) < 0) {
 				System.err.println("Valor inválido para transferencia.");
 			} else if (quantia.compareTo(saldo) > 0) {
 				setSaldo(saldo.subtract(quantia));
 				c.setSaldo(c.getSaldo().add(quantia));
-				c.transacoes.add(new transaction(quantia, TipoTransacao.TRANSACAO_CREDITO, LocalDateTime.now()));
-				transacoes.add(new transaction(quantia, TipoTransacao.TRANSACAO_DEBITO, LocalDateTime.now()));
+				c.transacoes.add(new Transaction(quantia, TypeTransaction.TRANSACAO_CREDITO, LocalDateTime.now()));
+				transacoes.add(new Transaction(quantia, TypeTransaction.TRANSACAO_DEBITO, LocalDateTime.now()));
 			} else
 				System.err.println("Saldo insuficiente para realizar a transferencia.");
 		} else {

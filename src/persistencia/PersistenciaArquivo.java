@@ -8,14 +8,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import bank.model.client;
-import bank.model.account;
+import bank.model.Client;
+import bank.model.Account;
 
 public class PersistenciaArquivo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private static PersistenciaArquivo instance;
-	private ArrayList<client> clientesCadastrados = new ArrayList<>();
+	private ArrayList<Client> clientesCadastrados = new ArrayList<>();
 
 	public PersistenciaArquivo() {
 		clientesCadastrados = new ArrayList<>();
@@ -30,7 +30,7 @@ public class PersistenciaArquivo implements Serializable {
 		}
 	}
 
-	public void cadastrarCliente(client c) {
+	public void cadastrarCliente(Client c) {
 		if (clientesCadastrados.contains(c)) {
 			System.err.println("Cliente já cadastrado!");
 		} else {
@@ -39,8 +39,8 @@ public class PersistenciaArquivo implements Serializable {
 		}
 	}
 
-	public client buscarClienteCpf(String cpf) {
-		client c = new client();
+	public Client buscarClienteCpf(String cpf) {
+		Client c = new Client();
 
 		c.setCpf(cpf);
 		if (clientesCadastrados.contains(c)) {
@@ -52,12 +52,12 @@ public class PersistenciaArquivo implements Serializable {
 		}
 	}
 
-	public List<client> listarClientes() {
+	public List<Client> listarClientes() {
 		return new ArrayList<>(clientesCadastrados);
 	}
 
 	public void removerCliente(String cpf) {
-		client cliente = buscarClienteCpf(cpf);
+		Client cliente = buscarClienteCpf(cpf);
 
 		if (cliente != null) {
 			clientesCadastrados.remove(cliente);
@@ -68,7 +68,7 @@ public class PersistenciaArquivo implements Serializable {
 		}
 	}
 
-	public void atualizarCliente(client c) {
+	public void atualizarCliente(Client c) {
 		if (clientesCadastrados.contains(c)) {
 			int index = clientesCadastrados.indexOf(c);
 			clientesCadastrados.set(index, c);
@@ -96,7 +96,7 @@ public class PersistenciaArquivo implements Serializable {
 		try {
 			FileInputStream fis = new FileInputStream("dados");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			clientesCadastrados = (ArrayList<client>) ois.readObject();
+			clientesCadastrados = (ArrayList<Client>) ois.readObject();
 			ois.close();
 			fis.close();
 		} catch (Exception e) {
